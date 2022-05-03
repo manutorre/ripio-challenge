@@ -1,11 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import { white } from "../../style-consts/colors";
 
 const Container = styled.div`
   margin-top: 65px;
   width: 100%;
-  margin-bottom: 65px;
+  margin-bottom: 150px;
 `;
 
 const Title = styled.h4`
@@ -46,6 +47,7 @@ const MovementCell = styled.div`
 `;
 
 function Movements() {
+  const { movements } = useSelector((state) => state.metadata);
   return (
     <Container>
       <Title>Mis movimientos</Title>
@@ -58,30 +60,16 @@ function Movements() {
           <MovementCell>Comisión</MovementCell>
           <MovementCell>Monto</MovementCell>
         </Movement>
-        <Movement>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-        </Movement>
-        <Movement>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-        </Movement>
-        <Movement>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-          <MovementCell>text</MovementCell>
-        </Movement>
+        {movements.map((mov, i) => (
+          <Movement key={i + mov.date + mov.amount + mov.commission_charges}>
+            <MovementCell>{mov.date}</MovementCell>
+            <MovementCell>{mov.kind}</MovementCell>
+            <MovementCell>{mov.method}</MovementCell>
+            <MovementCell>{mov.state}</MovementCell>
+            <MovementCell>{mov.charge.toLocaleString()}</MovementCell>
+            <MovementCell>{mov.amount}</MovementCell>
+          </Movement>
+        ))}
       </MovementsContainer>
     </Container>
   );

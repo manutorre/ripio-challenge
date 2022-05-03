@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import BalancesCard from "../balancesCard";
 
 const Container = styled.div`
@@ -10,12 +12,14 @@ const Container = styled.div`
 `;
 
 function Balances() {
+  const { user_currencies: userCurrencies } = useSelector(
+    (state) => state.metadata
+  );
   return (
     <Container>
-      <BalancesCard />
-      <BalancesCard />
-      <BalancesCard />
-      <BalancesCard />
+      {Object.keys(userCurrencies).map((cur, i) => (
+        <BalancesCard key={i} ticker={cur} amount={userCurrencies[cur]} />
+      ))}
     </Container>
   );
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { purple, lightGrey } from "../../style-consts/colors";
+import { purple, lightGrey, white } from "../../style-consts/colors";
 
 const SidebarContainer = styled.div`
   height: 100%;
   width: 260px;
   flex-shrink: 0;
-  background-color: #fffffff;
+  background-color: ${white};
 `;
 
 const SidebarOptions = styled.div`
@@ -40,9 +40,11 @@ function Sidebar() {
     <SidebarContainer>
       <SidebarOptions>
         <Option selected>Panel</Option>
-        <Option>Panel</Option>
-        <Option>Panel</Option>
-        <Option>Panel</Option>
+        <Option>Billetera</Option>
+        <Option>Cotizaciones</Option>
+        <Option>Créditos</Option>
+        <Option>Exchange</Option>
+        <Option>Launchpad</Option>
       </SidebarOptions>
     </SidebarContainer>
   );
